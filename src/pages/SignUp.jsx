@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dark from "../components/Home_page_main_bg_img.png";
 import { Link , useNavigate} from "react-router-dom";
 import Btn from "../NewComponents/Btn";
 
 
 function SignUp() {
-  const dispatch= useDispatch()
   const [username, setUsername]=useState("");
   const [password, setPassword]=useState("");
   const [email, setEmail]= useState("");
   const [error, setError]= useState("");
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
+  }, []);
   const navigate=useNavigate();
   async function handleSubmit(){
     const formData={
@@ -62,7 +67,8 @@ function SignUp() {
         }}
         
       />
-      <div className="w-1/3 py-10  border-solid flex flex-col gap-8 align-middle justify-center border-white bg-black bg-opacity-50 shadow-lg rounded-lg z-10 relative px-10">
+      <div className={`w-1/3  py-10  border-solid flex flex-col gap-8 align-middle justify-center border-white bg-black bg-opacity-50 shadow-lg rounded-lg z-10 relative px-10 transition-div ${loading ? '' : 'show'}`}>
+      
         <div className="hover-underline-animation">
           <input
             type="text"

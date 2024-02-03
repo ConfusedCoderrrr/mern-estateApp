@@ -9,7 +9,7 @@ function header() {
   
   return (
     <div className="grid grid-cols-7 items-center fixed top-0 w-full p-4 text-white lg:px-10 md:px-6 px-4 py-4 rounded-b-lg z-50 bg-gradient-to-b from-black via-transparent to-transparent">
-      <Link className="focus:outline-none md:col-span-2 col-span-4" to="/">
+      <Link className="focus:outline-none hover:scale-105 origin-center transition-transform md:col-span-2 col-span-4" to="/">
         <img
           src={Homevista}
           className="focus:outline-none w-52 h-20"
@@ -23,13 +23,13 @@ function header() {
             type="text"
             style={{ width: "180%" }}
             placeholder="Search...."
-            className="text-slate-600  hover:border-slate-600 hover:border-solid font-medium text-xl px-0 py-2 bg-slate-100 rounded-md relative pl-6 border-none focus:outline-slate-600 focus:outline-offset-2 shadow-lg"
+            className="text-slate-600 hover:scale-105 origin-center transition-transform  font-medium text-xl px-0 py-2 bg-slate-100 rounded-md relative pl-6 border-none focus:outline-none shadow-lg"
           />
           <div
             style={{ right: "-70%" }}
             className=" absolute top-1/2 transform -translate-y-1/2"
           >
-            <button>
+            <button className="hover:scale-125 origin-center transition-transform">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -57,17 +57,17 @@ function header() {
           to="/"
           className="hover:font-medium text-base hidden md:block hover:text-orange-400 hover:text-md hover-underline-animation"
         >
-          <a className="flex align-middle" href="">
+          
             Home
-          </a>
+          
         </Link>
         <Link
           to="/about"
           className="hover:font-medium text-base hidden md:block hover:text-orange-400 hover:text-md hover-underline-animation"
         >
-          <a className="flex align-middle" href="">
+          
             About
-          </a>
+          
         </Link>
         <Link
           to="/profile"

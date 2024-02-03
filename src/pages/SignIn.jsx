@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dark from "../components/Home_page_main_bg_img.png";
 import { Link } from "react-router-dom";
 import Btn from "../NewComponents/Btn";
@@ -12,6 +12,14 @@ function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
+  }, []);
+
   async function handleSignIn() {
     const userData = {
       email: email,
@@ -49,7 +57,7 @@ function SignIn() {
         position: "relative",
         height: "100vh",
       }}
-      className="flex items-center justify-center"
+      className="flex items-center justify-center transitionPage"
     >
       {/* Blurred background */}
       <div
@@ -64,7 +72,7 @@ function SignIn() {
           width: "100%",
         }}
       />
-      <div className="w-1/3 h-1/2 py-10  border-solid flex flex-col gap-8 align-middle justify-center border-white bg-black bg-opacity-50 shadow-lg rounded-lg z-10 relative px-10">
+      <div className={`w-1/3 h-1/2 py-10  border-solid flex flex-col gap-8 align-middle justify-center border-white bg-black bg-opacity-50 shadow-lg rounded-lg z-10 relative px-10 transition-div ${loading ? '' : 'show'}`}>
         <div className="hover-underline-animation">
           <input
             type="email"
