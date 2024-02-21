@@ -1,29 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import "./header.css";
 import Homevista from "../components/home.png";
 import { Link } from "react-router-dom";
 import Burger from "../components/burger-bar.png";
 import Btn from "./Btn";
+import { useSelector } from "react-redux";
 
 function header() {
-  
+  const handleSearchClick = async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      console.log(text);
+    } catch (error) {
+      console.error("Error reading from clipboard:", error);
+    }
+  };
+  const [searchValue, setSearchValue] = useState();
+  const userData = useSelector((state) => state.user.userData);
+  console.log(userData);
   return (
-    <div className="grid grid-cols-7 items-center fixed top-0 w-full p-4 text-white lg:px-10 md:px-6 px-4 py-4 rounded-b-lg z-50 bg-gradient-to-b from-black via-transparent to-transparent">
-      <Link className="focus:outline-none hover:scale-105 origin-center transition-transform md:col-span-2 col-span-4" to="/">
+    <div className=" grid grid-cols-7 items-center fixed top-0 w-full p-4 text-white lg:px-10 md:px-6 px-4 py-4 rounded-b-lg z-50 bg-gradient-to-b from-black via-transparent to-transparent">
+      <Link
+        className="focus:outline-none hover:scale-105 origin-center transition-transform md:col-span-2 col-span-4"
+        to="/"
+      >
         <img
           src={Homevista}
           className="focus:outline-none w-52 h-20"
-          style={{}}
           alt="HomeVista Logo"
         />
       </Link>
       <div className="flex md:col-span-3 col-span-1">
         <div className="relative hidden xl:block">
           <input
+            onClick={handleSearchClick}
             type="text"
-            style={{ width: "180%" }}
+            value={searchValue}
+            style={{ width: "180%", border: "2px solid orange" }}
             placeholder="Search...."
-            className="text-slate-600 hover:scale-105 origin-center transition-transform  font-medium text-xl px-0 py-2 bg-slate-100 rounded-md relative pl-6 border-none focus:outline-none shadow-lg"
+            className="text-slate-600 hover:scale-105 origin-center transition-transform font-medium text-xl px-0 py-2 bg-slate-100 rounded-md relative pl-6 border-none focus:outline-none shadow-lg"
           />
           <div
             style={{ right: "-70%" }}
@@ -57,28 +72,42 @@ function header() {
           to="/"
           className="hover:font-medium text-base hidden md:block hover:text-orange-400 hover:text-md hover-underline-animation"
         >
-          
-            Home
-          
+          Home
         </Link>
         <Link
           to="/about"
           className="hover:font-medium text-base hidden md:block hover:text-orange-400 hover:text-md hover-underline-animation"
         >
-          
-            About
-          
+          About
         </Link>
-        <Link
+        {/* <Link
           to="/profile"
           className="hover:font-medium text-base hidden md:block hover:text-orange-400 hover:text-md transition-opacity hover-underline-animation"
         >
           Profile
-        </Link>
+        </Link> */}
         <div>
-          <Link to="/sign-in">
-            <Btn title="Sign-in" />
-          </Link>
+          {userData && (
+            <Link to="/profile">
+              {" "}
+              <img
+                className="rounded-full h-14 w-14 object-cover hover:scale-105"
+                style={{
+                  border: "solid orange 2px",
+                }}
+                src={userData.photo}
+              />{" "}
+            </Link>
+          )}
+          {!userData && (
+            <Link to="/sign-in">
+              <Btn
+                title="Sign-in"
+                ActiveColor="bg-slate-900"
+                UpdatedColor="bg-orange-400"
+              />
+            </Link>
+          )}
         </div>
 
         <div className="text-end align-middle md:hidden flex col-span-1">

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { saveUser } from "../redux/user/userSlice";
 import { nanoid } from "@reduxjs/toolkit";
+import Outh from "../NewComponents/Outh";
 
 function SignIn() {
   const dispatch = useDispatch();
@@ -32,20 +33,21 @@ function SignIn() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userData),
-      }).then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          const { filteredUserInfo } = data;
-          console.log(filteredUserInfo);
-          dispatch(saveUser(filteredUserInfo));
-        console.log("Signed in successfully");
-        alert("signed in successfully !");
-        navigate("/");
-        } else {
-          console.error(data.message);
-        }
       })
-      .catch(error => console.error(error));
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            const { filteredUserInfo } = data;
+            console.log(filteredUserInfo);
+            dispatch(saveUser(filteredUserInfo));
+            console.log("Signed in successfully");
+            alert("signed in successfully !");
+            navigate("/");
+          } else {
+            console.error(data.message);
+          }
+        })
+        .catch((error) => console.error(error));
     } catch (error) {
       console.error("Error:", error);
     }
@@ -72,12 +74,15 @@ function SignIn() {
           width: "100%",
         }}
       />
-      <div className={`w-1/3 h-1/2 py-10  border-solid flex flex-col gap-8 align-middle justify-center border-white bg-black bg-opacity-50 shadow-lg rounded-lg z-10 relative px-10 transition-div ${loading ? '' : 'show'}`}>
+      <div
+        className={`w-1/3  py-10  border-solid flex flex-col gap-5 align-middle justify-center border-white bg-black bg-opacity-50 shadow-lg rounded-lg z-10 relative px-10 transition-div ${
+          loading ? "" : "show"
+        }`}
+      >
         <div className="hover-underline-animation">
           <input
             type="email"
-            className="h-10 rounded-md px-3 focus:outline-none text-black"
-            style={{ width: "100%" }}
+            className="h-10 rounded-md px-3 focus:outline-none text-black w-full"
             placeholder="Enter Username"
             name="email"
             id="email"
@@ -90,8 +95,7 @@ function SignIn() {
         <div className="hover-underline-animation">
           <input
             type="password"
-            className="h-10 rounded-md px-3 focus:outline-none text-black"
-            style={{ width: "100%" }}
+            className="h-10 rounded-md px-3 focus:outline-none text-black w-full"
             placeholder="Enter Password"
             name="password"
             id="password"
@@ -102,16 +106,25 @@ function SignIn() {
           />
         </div>
         <div
-          className="flex flex-row align-middle justify-center gap-5"
+          className="flex flex-row align-middle justify-center "
           onClick={handleSignIn}
         >
-          <Btn title="Sign-in" />
+          <Btn
+            title="Sign-in"
+            ActiveColor="bg-slate-900"
+            UpdatedColor="bg-orange-400"
+            width="w-full"
+          />
         </div>
-        <div className="flex flex-row align-middle justify-center gap-5">
+        <div className="flex flex-row align-middle justify-center ">
+          <Outh title="Continue with google" />
+        </div>
+
+        <div className="flex flex-row align-middle justify-center ">
           <span className="text-orange-400">
             Don't have account?{" "}
             <Link
-              className="text-blue-300 hover-underline-animation"
+              className="text-blue-300 hover-underline-animation "
               to="/sign-up"
             >
               Register Here

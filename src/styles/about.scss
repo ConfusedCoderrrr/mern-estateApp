@@ -1,0 +1,62 @@
+/* .slidingRight,
+.slidingLeft,
+.slidingUp {
+  transition: 1.5s ease-in-out;
+}
+
+.slidingRight {
+  transform: translate(-200%);
+}
+
+.slidingLeft {
+  transform: translate(200%);
+}
+
+.slidingUp {
+  height: 0;
+  opacity: 0;
+}
+
+/* .mainDivOverflow:hover .slidingRight {
+  transform: translate(0);
+}
+
+.mainDivOverflow:hover .slidingLeft {
+  transform: translate(0);
+}
+
+.mainDivOverflow:hover .slidingUp {
+  height: 35%;
+  opacity: 1;
+} */
+
+.glow {
+  border: 2px orange solid;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: black; /* Set your desired background color */
+  border-radius: 0 0 50% 50%; /* Round the bottom corners */
+  overflow: hidden; /* Hide overflow content beyond the rounded corners */
+}
+
+.icon {
+  width: 4em; /* Set the width of your icons */
+  height: 4em; /* Set the height of your icons */
+  color: #ffffff; /* Set the color of your icons */
+}
+
+
+.rounded-div {
+  border: 3px solid orange;
+  background-color: white;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+
+}
+
+/* Add any additional styling for your component */
